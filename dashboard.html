@@ -6,19 +6,25 @@
   <title>Dashboard | ConfidenSee</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* CSS Variables */
+  
+</head>
+<style>
+    /* CSS Variables - Light Theme */
     :root {
-      --primary: #00f0ff;
-      --secondary: #7928ca;
-      --dark-bg: #0f0f1f;
-      --darker-bg: #0a0a17;
-      --text-light: #fff;
-      --text-gray: #a0a0b0;
+      --primary: #5e72e4;
+      --primary-light: #7e95f2;
+      --secondary: #ff5e7d;
+      --secondary-light: #ff8fa4;
+      --light-bg: #f8f9fe;
+      --lighter-bg: #ffffff;
+      --text-dark: #2d3748;
+      --text-gray: #718096;
       --blur: blur(20px);
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --border-color: rgba(255, 255, 255, 0.05);
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --border-color: rgba(0, 0, 0, 0.08);
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
     }
     
     /* Reset & Base Styles */
@@ -30,8 +36,8 @@
     
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--darker-bg);
-      color: var(--text-light);
+      background: var(--lighter-bg);
+      color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -42,7 +48,7 @@
     }
     
     ::-webkit-scrollbar-track {
-      background: var(--darker-bg);
+      background: var(--light-bg);
     }
     
     ::-webkit-scrollbar-thumb {
@@ -59,14 +65,14 @@
     /* Sidebar */
     .sidebar {
       width: 280px;
-      background: rgba(15, 15, 31, 0.8);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: var(--blur);
       display: flex;
       flex-direction: column;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 1px solid var(--border-color);
       transition: var(--transition);
       z-index: 100;
-      position:static;
+      position: static;
     }
     
     .sidebar-header {
@@ -74,7 +80,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
     }
     
     .logo {
@@ -89,14 +95,13 @@
     
     .logo-icon img {
       width: 70px;
-    
       border-radius: 8px;
     }
     
     /* User Profile */
     .user-profile {
       padding: 24px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       gap: 16px;
@@ -111,7 +116,7 @@
       height: 56px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--border-color);
     }
     
     .status-indicator {
@@ -122,10 +127,12 @@
       height: 14px;
       background: var(--primary);
       border-radius: 50%;
+      border: 2px solid white;
     }
     
     .user-info h3 {
       margin-bottom: 4px;
+      color: var(--text-dark);
     }
     
     .user-info p {
@@ -149,7 +156,7 @@
       align-items: center;
       padding: 12px 20px;
       text-decoration: none;
-      color: var(--text-light);
+      color: var(--text-dark);
       font-weight: 500;
       transition: var(--transition);
     }
@@ -162,7 +169,7 @@
     
     .nav-item.active a,
     .nav-item a:hover {
-      background: rgba(0, 240, 255, 0.08);
+      background: rgba(94, 114, 228, 0.08);
       color: var(--primary);
     }
     
@@ -178,6 +185,31 @@
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       border-radius: 12px;
       color: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(94, 114, 228, 0.3);
+    }
+    
+    .upgrade-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+      );
+      transform: rotate(-45deg);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
     }
     
     /* Main Content */
@@ -185,18 +217,18 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      background: var(--dark-bg);
+      background: var(--light-bg);
     }
     
     /* Header */
     .dashboard-header {
-      background: rgba(15, 15, 31, 0.8);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: var(--blur);
       padding: 20px 24px;
       display: flex;
       align-items: center;
       gap: 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
     }
     
     .search-bar {
@@ -216,10 +248,14 @@
     .search-bar input {
       width: 100%;
       padding: 12px 16px 12px 44px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border-color);
       border-radius: 8px;
-      color: var(--text-light);
+      color: var(--text-dark);
+    }
+    
+    .search-bar input::placeholder {
+      color: var(--text-gray);
     }
     
     .header-actions {
@@ -267,18 +303,18 @@
     
     /* Welcome Section */
     .welcome-section {
-  background: var(--card-bg);
-  backdrop-filter: var(--blur);
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 24px;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  position: relative;   
-  border: 1px solid var(--border-color);/
-}
-
+      background: var(--card-bg);
+      backdrop-filter: var(--blur);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--card-shadow);
+    }
     
     .welcome-section h1 {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -322,7 +358,7 @@
     
     .cta-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 20px rgba(94, 114, 228, 0.3);
     }
     
     .cta-button:hover::before {
@@ -346,11 +382,12 @@
       gap: 16px;
       border: 1px solid var(--border-color);
       transition: var(--transition);
+      box-shadow: var(--card-shadow);
     }
     
     .stat-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--hover-shadow);
     }
     
     .stat-icon {
@@ -360,6 +397,7 @@
     
     .stat-card h3 {
       margin-bottom: 4px;
+      color: var(--text-dark);
     }
     
     .stat-card p {
@@ -374,6 +412,7 @@
       padding: 24px;
       margin-bottom: 24px;
       border: 1px solid var(--border-color);
+      box-shadow: var(--card-shadow);
     }
     
     .sessions-section h2 {
@@ -398,15 +437,16 @@
     }
     
     .session-card {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.7);
       padding: 20px;
       border-radius: 12px;
       transition: var(--transition);
+      border: 1px solid var(--border-color);
     }
     
     .session-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--hover-shadow);
     }
     
     .session-header {
@@ -434,7 +474,7 @@
     /* Progress Bar */
     .progress-bar {
       height: 8px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.1);
       border-radius: 4px;
       margin: 12px 0;
       overflow: hidden;
@@ -467,12 +507,12 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(94, 114, 228, 0.1), transparent);
       transition: 0.5s;
     }
     
     .session-action-btn:hover {
-      background: rgba(0, 240, 255, 0.1);
+      background: rgba(94, 114, 228, 0.1);
       transform: translateY(-2px);
     }
     
@@ -494,11 +534,12 @@
       border: 1px solid var(--border-color);
       margin-bottom: 16px;
       transition: var(--transition);
+      box-shadow: var(--card-shadow);
     }
     
     .plan-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--hover-shadow);
     }
     
     .pricing-header {
@@ -540,6 +581,99 @@
       color: var(--primary);
     }
     
+    /* Notification button */
+    .notification-btn {
+      position: relative;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-gray);
+    }
+
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--secondary);
+      color: white;
+      border-radius: 50%;
+      padding: 3px 6px;
+      font-size: 12px;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background: var(--lighter-bg);
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 350px;
+      text-align: center;
+      position: relative;
+      z-index: 9999;
+      box-shadow: var(--card-shadow);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--text-gray);
+    }
+
+    .modal-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+    }
+
+    .modal-title {
+      margin: 10px 0;
+      font-size: 22px;
+      color: var(--text-dark);
+    }
+
+    .modal-message {
+      font-size: 14px;
+      color: var(--text-gray);
+      margin-bottom: 20px;
+    }
+
+    .modal-btn {
+      padding: 10px 20px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: var(--transition);
+    }
+
+    .modal-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(94, 114, 228, 0.3);
+    }
+    
     /* Responsive Design */
     @media (max-width: 992px) {
       .sidebar {
@@ -554,10 +688,6 @@
       
       .dashboard-container {
         overflow-x: hidden;
-      }
-      
-      .analytics-section {
-        grid-template-columns: 1fr;
       }
     }
     
@@ -591,125 +721,7 @@
         margin-top: 16px;
       }
     }
-    /* Upgrade Card */
-    .upgrade-card {
-      margin: 20px;
-      padding: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border-radius: 16px;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-    
-    .upgrade-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.05)
-      );
-      transform: rotate(-45deg);
-      animation: shine 3s infinite;
-    }
-    
-    @keyframes shine {
-      0% { left: -100%; }
-      20% { left: 100%; }
-      100% { left: 100%; }
-    }
-     /* Notification button */
-    .notification-btn {
-      position: relative;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .notification-badge {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background: red;
-      color: white;
-      border-radius: 50%;
-      padding: 3px 6px;
-      font-size: 12px;
-    }
-
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-    }
-
-    .modal-content {
-      background: var(--darker-bg);
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 12px;
-      width: 350px;
-      text-align: center;
-      position: relative;
-      z-index: 9999;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 20px;
-      border: none;
-      background: none;
-      cursor: pointer;
-    }
-
-    .modal-icon {
-      font-size: 40px;
-      margin-bottom: 15px;
-      color: linear-gradient(135deg, var(--primary), var(--secondary));
-      display: block;
-    }
-
-    .modal-title {
-      margin: 10px 0;
-      font-size: 22px;
-    }
-
-    .modal-message {
-      font-size: 14px;
-      color: #ffffff;
-      margin-bottom: 20px;
-    }
-
-    .modal-btn {
-      padding: 10px 20px;
-      border: none;
-      background: var(--dark-bg);
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .modal-btn:hover {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-    }
   </style>
-</head>
 <body>
   <!-- Notification Modal -->
           <div class="modal" id="notificationModal">

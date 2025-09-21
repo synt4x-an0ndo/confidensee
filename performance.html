@@ -7,18 +7,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* CSS Variables */
+    /* CSS Variables - Light Theme */
     :root {
-      --primary: #00f0ff;
-      --secondary: #7928ca;
-      --dark-bg: #0f0f1f;
-      --darker-bg: #0a0a17;
-      --text-light: #fff;
-      --text-gray: #a0a0b0;
+      --primary: #5e72e4;
+      --primary-light: #7e95f2;
+      --secondary: #ff5e7d;
+      --secondary-light: #ff8fa4;
+      --light-bg: #f8f9fe;
+      --lighter-bg: #ffffff;
+      --text-dark: #2d3748;
+      --text-gray: #718096;
       --blur: blur(20px);
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --border-color: rgba(255, 255, 255, 0.05);
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --border-color: rgba(0, 0, 0, 0.08);
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
     }
     
     /* Reset & Base Styles */
@@ -30,8 +34,8 @@
     
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--darker-bg);
-      color: var(--text-light);
+      background: var(--lighter-bg);
+      color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -42,7 +46,7 @@
     }
     
     ::-webkit-scrollbar-track {
-      background: var(--darker-bg);
+      background: var(--light-bg);
     }
     
     ::-webkit-scrollbar-thumb {
@@ -59,11 +63,11 @@
     /* Sidebar */
     .sidebar {
       width: 280px;
-      background: rgba(15, 15, 31, 0.8);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: var(--blur);
       display: flex;
       flex-direction: column;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 1px solid var(--border-color);
       transition: var(--transition);
       z-index: 100;
     }
@@ -73,7 +77,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
     }
     
     .logo {
@@ -94,7 +98,7 @@
     /* User Profile */
     .user-profile {
       padding: 24px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       gap: 16px;
@@ -109,7 +113,7 @@
       height: 56px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--border-color);
     }
     
     .status-indicator {
@@ -120,10 +124,12 @@
       height: 14px;
       background: var(--primary);
       border-radius: 50%;
+      border: 2px solid white;
     }
     
     .user-info h3 {
       margin-bottom: 4px;
+      color: var(--text-dark);
     }
     
     .user-info p {
@@ -147,7 +153,7 @@
       align-items: center;
       padding: 12px 20px;
       text-decoration: none;
-      color: var(--text-light);
+      color: var(--text-dark);
       font-weight: 500;
       transition: var(--transition);
     }
@@ -160,7 +166,7 @@
     
     .nav-item.active a,
     .nav-item a:hover {
-      background: rgba(0, 240, 255, 0.08);
+      background: rgba(94, 114, 228, 0.08);
       color: var(--primary);
     }
     
@@ -174,18 +180,18 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      background: var(--dark-bg);
+      background: var(--light-bg);
     }
     
     /* Header */
     .dashboard-header {
-      background: rgba(15, 15, 31, 0.8);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: var(--blur);
       padding: 19px 24px;
       display: flex;
       align-items: center;
       gap: 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
     }
     
     .search-bar {
@@ -205,10 +211,14 @@
     .search-bar input {
       width: 100%;
       padding: 12px 16px 12px 44px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border-color);
       border-radius: 8px;
-      color: var(--text-light);
+      color: var(--text-dark);
+    }
+    
+    .search-bar input::placeholder {
+      color: var(--text-gray);
     }
     
     /* Dashboard Content */
@@ -267,7 +277,7 @@
     
     .cta-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 20px rgba(94, 114, 228, 0.3);
     }
     
     .cta-button:hover::before {
@@ -288,11 +298,12 @@
       border-radius: 16px;
       border: 1px solid var(--border-color);
       transition: var(--transition);
+      box-shadow: var(--card-shadow);
     }
     
     .analytics-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--hover-shadow);
     }
     
     .card-header {
@@ -320,9 +331,10 @@
     
     /* Weekly Performance Chart */
     .chart-container {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.7);
       border-radius: 8px;
       padding: 16px;
+      border: 1px solid var(--border-color);
     }
     
     .chart-bars {
@@ -371,7 +383,7 @@
       transform: translate(-50%, -50%);
       width: 80px;
       height: 80px;
-      background: var(--dark-bg);
+      background: var(--light-bg);
       border-radius: 50%;
     }
     
@@ -419,6 +431,40 @@
     .stat-label {
       color: var(--text-gray);
       font-size: 14px;
+    }
+    
+    /* Upgrade Card */
+    .upgrade-card {
+      margin: 20px;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 16px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(94, 114, 228, 0.3);
+    }
+    
+    .upgrade-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+      );
+      transform: rotate(-45deg);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
     }
     
     /* Responsive Design */
@@ -484,39 +530,6 @@
         flex-direction: column;
         gap: 24px;
       }
-    }
-    /* Upgrade Card */
-    .upgrade-card {
-      margin: 20px;
-      padding: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border-radius: 16px;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-    
-    .upgrade-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.05)
-      );
-      transform: rotate(-45deg);
-      animation: shine 3s infinite;
-    }
-    
-    @keyframes shine {
-      0% { left: -100%; }
-      20% { left: 100%; }
-      100% { left: 100%; }
     }
   </style>
 </head>
