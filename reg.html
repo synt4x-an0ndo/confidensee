@@ -11,21 +11,21 @@
 <style>
   /* Variables for consistent theming */
   :root {
-    --primary: #00f0ff;
-    --primary-dark: #00c2ff;
-    --secondary: #7928ca;
-    --secondary-dark: #4a1e80;
-    --dark-bg: #0f0f1f;
-    --darker-bg: #0a0a17;
-    --text-light: #ffffff;
-    --text-gray: #a0a0b0;
-    --glass-light: rgba(255, 255, 255, 0.05);
-    --glass-dark: rgba(0, 0, 0, 0.2);
-    --blur: blur(20px);
-    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --success: #2ed573;
-    --error: #ff4757;
-  }
+      --primary: #5e72e4;
+      --primary-light: #7e95f2;
+      --secondary: #ff5e7d;
+      --secondary-light: #ff8fa4;
+      --dark-bg: #f8f9fe;
+      --darker-bg: #ffffff;
+      --text-dark: #2d3748;
+      --text-gray: #718096;
+      --blur: blur(20px);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --border-color: rgba(0, 0, 0, 0.08);
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
 
   * {
     margin: 0;
@@ -137,7 +137,7 @@
   }
 
   .logo-icon {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+
     width: 30px;
     height: 30px;
     border-radius: 8px;
@@ -324,7 +324,7 @@
     100% {
       background: linear-gradient(90deg,
           rgba(255, 255, 255, 0.01),
-          rgba(0, 240, 255, 0.15),
+          rgba(0, 238, 255, 0.705),
           rgba(255, 255, 255, 0.01));
       box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
     }
@@ -356,8 +356,8 @@
     font-size: 0.8rem;
     padding: 0.5rem 1.5rem;
     border-radius: 24px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(55, 133, 197, 0.575);
+    border: 1px solid rgba(158, 198, 245, 0.096);
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 500;
@@ -658,7 +658,7 @@
         <span>Back to Home</span>
       </a>
       <div class="auth-logo">
-        <div onclick="window.location.href='index.html'" class="logo-izcon">
+        <div onclick="window.location.href='index.html'" class="logo-icon">
           <img src="img/logo2.png" alt="Logo" class="logo">
         </div>
         
