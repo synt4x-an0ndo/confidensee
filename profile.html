@@ -7,22 +7,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* CSS Variables */
+    /* CSS Variables - Light Theme */
     :root {
-      --primary: #00f0ff;
-      --secondary: #7928ca;
-      --dark-bg: #0f0f1f;
-      --darker-bg: #0a0a17;
-      --text-light: #fff;
-      --text-gray: #a0a0b0;
+      --primary: #5e72e4;
+      --primary-light: #7e95f2;
+      --secondary: #ff5e7d;
+      --secondary-light: #ff8fa4;
+      --light-bg: #f8f9fe;
+      --lighter-bg: #ffffff;
+      --text-dark: #2d3748;
+      --text-gray: #718096;
       --blur: blur(20px);
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --border-color: rgba(255, 255, 255, 0.05);
-      --success: #00cc88;
-      --warning: #ffaa00;
-      --danger: #ff4757;
-      --info: #00aaff;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --border-color: rgba(0, 0, 0, 0.08);
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      --success: #2dce89;
+      --warning: #fb6340;
+      --danger: #f5365c;
+      --info: #11cdef;
     }
     
     /* Reset & Base Styles */
@@ -34,8 +38,8 @@
     
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--darker-bg);
-      color: var(--text-light);
+      background: var(--lighter-bg);
+      color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -46,7 +50,7 @@
     }
     
     ::-webkit-scrollbar-track {
-      background: var(--darker-bg);
+      background: var(--light-bg);
     }
     
     ::-webkit-scrollbar-thumb {
@@ -63,11 +67,11 @@
     /* Sidebar */
     .sidebar {
       width: 280px;
-      background: rgba(15, 15, 31, 0.8);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: var(--blur);
       display: flex;
       flex-direction: column;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 1px solid var(--border-color);
       transition: var(--transition);
       z-index: 100;
     }
@@ -77,7 +81,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
     }
     
     .logo {
@@ -98,7 +102,7 @@
     /* User Profile */
     .user-profile {
       padding: 24px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       gap: 16px;
@@ -113,7 +117,7 @@
       height: 56px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--border-color);
     }
     
     .status-indicator {
@@ -124,10 +128,12 @@
       height: 14px;
       background: var(--primary);
       border-radius: 50%;
+      border: 2px solid white;
     }
     
     .user-info h3 {
       margin-bottom: 4px;
+      color: var(--text-dark);
     }
     
     .user-info p {
@@ -151,7 +157,7 @@
       align-items: center;
       padding: 12px 20px;
       text-decoration: none;
-      color: var(--text-light);
+      color: var(--text-dark);
       font-weight: 500;
       transition: var(--transition);
     }
@@ -164,7 +170,7 @@
     
     .nav-item.active a,
     .nav-item a:hover {
-      background: rgba(0, 240, 255, 0.08);
+      background: rgba(94, 114, 228, 0.08);
       color: var(--primary);
     }
     
@@ -178,18 +184,18 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      background: var(--dark-bg);
+      background: var(--light-bg);
     }
     
     /* Header */
     .dashboard-header {
-      background: rgba(15, 15, 31, 0.8);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: var(--blur);
       padding: 19px 24px;
       display: flex;
       align-items: center;
       gap: 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
     }
     
     .search-bar {
@@ -209,10 +215,14 @@
     .search-bar input {
       width: 100%;
       padding: 12px 16px 12px 44px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border-color);
       border-radius: 8px;
-      color: var(--text-light);
+      color: var(--text-dark);
+    }
+    
+    .search-bar input::placeholder {
+      color: var(--text-gray);
     }
     
     /* Dashboard Content */
@@ -235,6 +245,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 8px;
+      font-size: 2rem;
     }
     
     .page-header p {
@@ -261,11 +272,12 @@
       border: 1px solid var(--border-color);
       margin-bottom: 24px;
       transition: var(--transition);
+      box-shadow: var(--card-shadow);
     }
     
     .settings-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--hover-shadow);
     }
     
     .settings-card h3 {
@@ -273,6 +285,7 @@
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      font-size: 1.3rem;
     }
     
     .settings-card p {
@@ -298,9 +311,9 @@
       width: 100%;
       padding: 12px;
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.7);
       border: 1px solid var(--border-color);
-      color: var(--text-light);
+      color: var(--text-dark);
       transition: var(--transition);
     }
     
@@ -309,7 +322,7 @@
     .form-group textarea:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.2);
+      box-shadow: 0 0 0 2px rgba(94, 114, 228, 0.2);
     }
     
     /* Buttons */
@@ -342,7 +355,7 @@
     
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 5px 15px rgba(94, 114, 228, 0.3);
     }
     
     .btn-primary:hover::before {
@@ -364,7 +377,7 @@
     }
     
     .btn-outline:hover {
-      background: rgba(0, 240, 255, 0.1);
+      background: rgba(94, 114, 228, 0.1);
       transform: translateY(-2px);
     }
     
@@ -383,7 +396,7 @@
     }
     
     .btn-danger:hover {
-      background: rgba(255, 71, 87, 0.1);
+      background: rgba(245, 54, 92, 0.1);
       transform: translateY(-2px);
     }
     
@@ -417,7 +430,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(0, 0, 0, 0.1);
       transition: var(--transition);
       border-radius: 24px;
     }
@@ -429,7 +442,7 @@
       width: 18px;
       left: 3px;
       bottom: 3px;
-      background-color: var(--text-light);
+      background-color: white;
       transition: var(--transition);
       border-radius: 50%;
     }
@@ -471,6 +484,7 @@
       padding: 20px;
       border-radius: 16px;
       margin-bottom: 24px;
+      box-shadow: var(--card-shadow);
     }
     
     .subscription-card h3 {
@@ -506,11 +520,12 @@
       border-radius: 16px;
       border: 1px solid var(--border-color);
       margin-bottom: 24px;
+      box-shadow: var(--card-shadow);
     }
     
     .stats-card h4 {
       margin-bottom: 16px;
-      color: var(--text-light);
+      color: var(--text-dark);
     }
     
     .stats-grid {
@@ -522,8 +537,9 @@
     .stat-item {
       text-align: center;
       padding: 12px;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.7);
       border-radius: 8px;
+      border: 1px solid var(--border-color);
     }
     
     .stat-value {
@@ -540,8 +556,8 @@
     
     /* Danger Zone */
     .danger-zone {
-      border: 1px solid rgba(255, 71, 87, 0.3);
-      background: rgba(255, 71, 87, 0.05);
+      border: 1px solid rgba(245, 54, 92, 0.3);
+      background: rgba(245, 54, 92, 0.05);
     }
     
     .danger-zone h3 {
