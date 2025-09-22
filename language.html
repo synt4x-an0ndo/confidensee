@@ -6,9 +6,7 @@
   <title>Language | ConfidenSee</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-</head>
-<style>
+  <style>
     /* CSS Variables - Light Theme */
     :root {
       --primary: #5e72e4;
@@ -25,6 +23,7 @@
       --border-color: rgba(0, 0, 0, 0.08);
       --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      --success: #00cc88;
     }
     
     /* Reset & Base Styles */
@@ -100,6 +99,10 @@
       gap: 16px;
     }
     
+    .avatar {
+      position: relative;
+    }
+    
     .avatar img {
       width: 56px;
       height: 56px;
@@ -117,6 +120,14 @@
       background: var(--primary);
       border-radius: 50%;
       border: 2px solid white;
+    }
+    
+    .user-info h3 {
+      margin-bottom: 4px;
+    }
+    
+    .user-info p {
+      color: var(--text-gray);
     }
     
     .sidebar-nav {
@@ -155,18 +166,6 @@
     .nav-item.active a i,
     .nav-item a:hover i {
       color: var(--primary);
-    }
-    
-    /* Upgrade Card */
-    .upgrade-card {
-      margin: 20px;
-      padding: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border-radius: 12px;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 20px rgba(94, 114, 228, 0.3);
     }
     
     /* Main Content */
@@ -215,36 +214,6 @@
       color: var(--text-gray);
     }
     
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    
-    .notification-btn, .profile-btn {
-      background: none;
-      border: none;
-      color: var(--text-gray);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    
-    .notification-btn:hover, .profile-btn:hover {
-      color: var(--primary);
-      transform: translateY(-2px);
-    }
-    
-    .profile-btn img {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      transition: var(--transition);
-    }
-    
-    .profile-btn:hover img {
-      box-shadow: 0 0 0 2px var(--primary);
-    }
-    
     /* Dashboard Content */
     .dashboard-content {
       flex: 1;
@@ -252,34 +221,148 @@
       overflow-y: auto;
     }
     
-    /* Welcome Section */
-    .welcome-section {
-      background: var(--card-bg);
-      backdrop-filter: var(--blur);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 24px;
+    /* Page Header */
+    .page-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--card-shadow);
+      margin-bottom: 24px;
     }
     
-    .welcome-section h1 {
+    .page-header h1 {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 8px;
     }
     
-    .welcome-section p {
+    .page-header p {
       color: var(--text-gray);
     }
     
-    /* CTA Button */
-    .cta-button {
+    /* Settings Cards */
+    .settings-card {
+      background: var(--card-bg);
+      padding: 24px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+    
+    .settings-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--hover-shadow);
+    }
+    
+    .settings-card h3 {
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .settings-card p {
+      color: var(--text-gray);
+      margin-bottom: 16px;
+    }
+    
+    /* Language Selector */
+    .language-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .language-option {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .language-option:hover {
+      background: rgba(94, 114, 228, 0.05);
+      border-color: var(--primary);
+    }
+    
+    .language-option.selected {
+      background: rgba(94, 114, 228, 0.1);
+      border-color: var(--primary);
+      box-shadow: 0 5px 15px rgba(94, 114, 228, 0.1);
+    }
+    
+    .language-flag {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    
+    .language-info {
+      flex: 1;
+    }
+    
+    .language-name {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .language-details {
+      font-size: 14px;
+      color: var(--text-gray);
+    }
+    
+    .language-check {
+      color: var(--success);
+      font-size: 18px;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .language-option.selected .language-check {
+      opacity: 1;
+    }
+    
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-group label {
+      display: block;
+      color: var(--text-gray);
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border-color);
+      color: var(--text-dark);
+      transition: var(--transition);
+    }
+    
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(94, 114, 228, 0.2);
+    }
+    
+    /* Buttons */
+    .btn-primary {
       padding: 12px 20px;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       border: none;
@@ -287,7 +370,7 @@
       color: white;
       font-weight: 600;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       gap: 8px;
       align-items: center;
       transition: var(--transition);
@@ -295,7 +378,7 @@
       overflow: hidden;
     }
     
-    .cta-button::before {
+    .btn-primary::before {
       content: '';
       position: absolute;
       top: 0;
@@ -306,63 +389,59 @@
       transition: 0.5s;
     }
     
-    .cta-button:hover {
-      transform: translateY(-3px);
+    .btn-primary:hover {
+      transform: translateY(-2px);
       box-shadow: 0 10px 20px rgba(94, 114, 228, 0.3);
     }
     
-    .cta-button:hover::before {
+    .btn-primary:hover::before {
       left: 100%;
     }
     
-    /* Stats Section */
-    .stats-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+    /* Language Preview */
+    .preview-section {
+      background: var(--card-bg);
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--card-shadow);
       margin-bottom: 24px;
     }
     
-    .stat-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 20px;
+    .preview-section h3 {
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .preview-content {
       display: flex;
-      align-items: center;
-      gap: 16px;
-      border: 1px solid var(--border-color);
-      transition: var(--transition);
-      box-shadow: var(--card-shadow);
-    }
-    
-    .stat-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--hover-shadow);
-    }
-    
-    .analytics-section {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
       gap: 24px;
     }
     
-    .interviews-section, .sessions-section {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 24px;
+    .preview-text {
+      flex: 1;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 8px;
       border: 1px solid var(--border-color);
-      box-shadow: var(--card-shadow);
     }
     
-    /* Settings Card */
-    .settings-card {
-      background: var(--card-bg);
-      padding: 24px;
-      border-radius: 16px;
-      margin-bottom: 16px;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--card-shadow);
+    .preview-text h4 {
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+    
+    .preview-text p {
+      color: var(--text-gray);
+      font-size: 14px;
+    }
+    
+    /* Card Actions */
+    .card-actions {
+      text-align: right;
+      margin-top: 16px;
     }
     
     /* Responsive Design */
@@ -381,27 +460,20 @@
         overflow-x: hidden;
       }
       
-      .analytics-section {
-        grid-template-columns: 1fr;
+      .preview-content {
+        flex-direction: column;
       }
     }
     
     @media (max-width: 768px) {
-      .welcome-section {
+      .page-header {
         flex-direction: column;
         text-align: center;
-      }
-      
-      .stats-section {
-        grid-template-columns: 1fr 1fr;
+        gap: 16px;
       }
     }
     
     @media (max-width: 576px) {
-      .stats-section {
-        grid-template-columns: 1fr;
-      }
-      
       .dashboard-header {
         flex-wrap: wrap;
       }
@@ -411,13 +483,34 @@
         order: 3;
         margin-top: 16px;
       }
+      
+      .settings-card {
+        padding: 16px;
+      }
     }
   </style>
+</head>
 <body>
   <div class="dashboard-container">
-    <div class="sidebar">
-      <div class="sidebar-header"><div onclick="window.location.href='index.html'"class="logo"><img src="img/logo2.png" style="width:70px;"></div></div>
-      <div style="padding:24px 20px;border-bottom:1px solid rgb(255, 255, 255);display:flex;gap:12px"><img src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg" style="width:56px;height:56px;border-radius:50%"><div><h3>User</h3><p style="color:var(--text-gray)">Premium Member</p></div></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div onclick="window.location.href='index.html'" class="logo">
+          <img src="img/logo2.png" style="width:70px;" alt="ConfidenSee Logo">
+        </div>
+      </div>
+
+      <div class="user-profile">
+        <div class="avatar">
+          <img src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg" alt="User Avatar">
+          <div class="status-indicator"></div>
+        </div>
+        <div class="user-info">
+          <h3>User</h3>
+          <p>Premium Member</p>
+        </div>
+      </div>
+
       <ul class="sidebar-nav">
         <li class="nav-item"><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
         <li class="nav-item"><a href="question-packs.html"><i class="fas fa-folder"></i> Question Packs</a></li>
@@ -425,46 +518,301 @@
         <li class="nav-item"><a href="pricing.html"><i class="fas fa-tag"></i> Pricing</a></li>
         <li class="nav-item"><a href="ai-setup.html"><i class="fas fa-robot"></i> AI Setup</a></li>
         <li class="nav-item"><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
-          <li class="nav-item"><a href="aivideo.html"><i class="fas fa-video"></i> AI Video Interview</a></li>
+        <li class="nav-item"><a href="aivideo.html"><i class="fas fa-video"></i> AI Video Interview</a></li>
         <li class="nav-item"><a href="ai-training.html"><i class="fas fa-graduation-cap"></i> AI Training</a></li>
         <li class="nav-item active"><a href="language.html"><i class="fas fa-globe"></i> Language</a></li>
       </ul>
     </div>
 
+    <!-- Main Content -->
     <div class="main-content">
-      <div class="dashboard-header" style="padding:20px;background:rgb(255, 255, 255)"><input placeholder="Search..." style="width:100%;padding:12px;border-radius:8px;background:rgba(58, 54, 54, 0.267);border:1px solid rgba(255,255,255,.08);color:var(--text-light)"></div>
+      <div class="dashboard-header">
+        <button id="openSidebar" style="display:none;background:none;border:none;color:var(--text-gray)"><i class="fas fa-bars"></i></button>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input placeholder="Search..." />
+        </div>
+      </div>
 
-      <div class="dashboard-content" style="padding:24px">
-        <div class="welcome-section" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-          <div><h1 style="background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Language</h1><p style="color:var(--text-gray)">Pick your preferred language for the interface and AI feedback</p></div>
-          <div></div>
+      <div class="dashboard-content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div>
+            <h1>Language Settings</h1>
+            <p>Customize your language preferences for interface and AI feedback</p>
+          </div>
         </div>
 
+        <!-- Language Preview -->
+        <div class="preview-section">
+          <h3>Language Preview</h3>
+          <div class="preview-content">
+            <div class="preview-text">
+              <h4>Interface Language</h4>
+              <p id="interface-preview">Welcome to ConfidenSee! This is how the interface will look in your selected language.</p>
+            </div>
+            <div class="preview-text">
+              <h4>AI Feedback Language</h4>
+              <p id="ai-preview">Great job on your interview response! Your communication skills are improving steadily.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interface Language -->
         <div class="settings-card">
           <h3>Interface Language</h3>
-          <p style="color:var(--text-gray)">Choose the language you prefer for the UI</p>
-          <select style="padding:10px;border-radius:8px;background:rgb(255, 255, 255);border:1px solid rgba(255,255,255,.08);color:var(--text-light)">
-            <option>English (US)</option>
-            <option>English (UK)</option>
-            <option>বাংলা (Bangla)</option>
-            <option>Español</option>
-          </select>
+          <p>Choose the language you prefer for the user interface</p>
+          
+          <div class="language-selector">
+            <div class="language-option selected" data-lang="en" data-type="interface">
+              <div class="language-flag">🇺🇸</div>
+              <div class="language-info">
+                <div class="language-name">English (US)</div>
+                <div class="language-details">Default language with US spelling</div>
+              </div>
+              <div class="language-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+            
+            <div class="language-option" data-lang="en-uk" data-type="interface">
+              <div class="language-flag">🇬🇧</div>
+              <div class="language-info">
+                <div class="language-name">English (UK)</div>
+                <div class="language-details">British English with UK spelling</div>
+              </div>
+              <div class="language-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+            
+            <div class="language-option" data-lang="bn" data-type="interface">
+              <div class="language-flag">🇧🇩</div>
+              <div class="language-info">
+                <div class="language-name">বাংলা (Bangla)</div>
+                <div class="language-details">Bangla language interface</div>
+              </div>
+              <div class="language-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+            
+            <div class="language-option" data-lang="es" data-type="interface">
+              <div class="language-flag">🇪🇸</div>
+              <div class="language-info">
+                <div class="language-name">Español</div>
+                <div class="language-details">Spanish language interface</div>
+              </div>
+              <div class="language-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+            
+            <div class="language-option" data-lang="fr" data-type="interface">
+              <div class="language-flag">🇫🇷</div>
+              <div class="language-info">
+                <div class="language-name">Français</div>
+                <div class="language-details">French language interface</div>
+              </div>
+              <div class="language-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+          </div>
         </div>
 
+        <!-- AI Feedback Language -->
         <div class="settings-card">
           <h3>AI Feedback Language</h3>
-          <p style="color:var(--text-gray)">The language the AI will use when giving feedback</p>
-          <select style="padding:10px;border-radius:8px;background:rgb(255, 255, 255);border:1px solid rgba(255,255,255,.08);color:var(--text-light)">
-            <option>English</option>
-            <option>Bangla</option>
-            <option>Spanish</option>
-          </select>
+          <p>Choose the language the AI will use when providing feedback</p>
+          
+          <div class="language-selector">
+            <div class="language-option selected" data-lang="en" data-type="ai">
+              <div class="language-flag">🇺🇸</div>
+              <div class="language-info">
+                <div class="language-name">English</div>
+                <div class="language-details">AI feedback in English</div>
+              </div>
+              <div class="language-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+            
+            <div class="language-option" data-lang="bn" data-type="ai">
+              <div class="language-flag">🇧🇩</div>
+              <div class="language-info">
+                <div class="language-name">বাংলা</div>
+                <div class="language-details">AI feedback in Bangla</div>
+              </div>
+              <div class="language-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+            
+            <div class="language-option" data-lang="es" data-type="ai">
+              <div class="language-flag">🇪🇸</div>
+              <div class="language-info">
+                <div class="language-name">Español</div>
+                <div class="language-details">AI feedback in Spanish</div>
+              </div>
+              <div class="language-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+            
+            <div class="language-option" data-lang="fr" data-type="ai">
+              <div class="language-flag">🇫🇷</div>
+              <div class="language-info">
+                <div class="language-name">Français</div>
+                <div class="language-details">AI feedback in French</div>
+              </div>
+              <div class="language-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+            
+            <div class="language-option" data-lang="de" data-type="ai">
+              <div class="language-flag">🇩🇪</div>
+              <div class="language-info">
+                <div class="language-name">Deutsch</div>
+                <div class="language-details">AI feedback in German</div>
+              </div>
+              <div class="language-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+          </div>
         </div>
 
-        <div style="text-align:right"><button style="padding:12px 20px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;color:#fff">Save Language Settings</button></div>
+        <!-- Additional Language Settings -->
+        <div class="settings-card">
+          <h3>Additional Language Settings</h3>
+          <p>Fine-tune your language preferences</p>
+          
+          <div class="form-group">
+            <label>Speech Recognition Language</label>
+            <select id="speech-lang">
+              <option value="en-US">English (United States)</option>
+              <option value="en-GB">English (United Kingdom)</option>
+              <option value="bn-BD">Bangla (Bangladesh)</option>
+              <option value="es-ES">Spanish (Spain)</option>
+              <option value="fr-FR">French (France)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Text-to-Speech Voice</label>
+            <select id="tts-voice">
+              <option value="en-US-1">English Voice 1 (Female)</option>
+              <option value="en-US-2">English Voice 2 (Male)</option>
+              <option value="bn-BD-1">Bangla Voice 1 (Female)</option>
+              <option value="es-ES-1">Spanish Voice 1 (Female)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Translation Preferences</label>
+            <select id="translation-pref">
+              <option value="auto">Auto-detect language</option>
+              <option value="manual">Always ask for translation</option>
+              <option value="none">Never translate</option>
+            </select>
+          </div>
+        </div>
 
+        <div class="card-actions">
+          <button class="btn-primary" id="save-settings">
+            <i class="fas fa-save"></i> Save Language Settings
+          </button>
+        </div>
       </div>
     </div>
   </div>
+
+  <script>
+    // Script to toggle sidebar on small screens
+    (function(){
+      const sidebar = document.getElementById('sidebar');
+      const openBtn = document.getElementById('openSidebar');
+      
+      // Show mobile open button if screen is small
+      function check() { 
+        if (window.innerWidth < 992) {
+          openBtn.style.display = 'inline-block';
+        } else {
+          openBtn.style.display = 'none';
+          sidebar.classList.remove('active');
+        }
+      }
+      
+      window.addEventListener('resize', check);
+      check();
+      
+      openBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+      });
+
+      // Language selection functionality
+      const languageOptions = document.querySelectorAll('.language-option');
+      let selectedInterfaceLang = 'en';
+      let selectedAILang = 'en';
+      
+      // Language preview texts
+      const interfacePreviews = {
+        'en': 'Welcome to ConfidenSee! This is how the interface will look in your selected language.',
+        'en-uk': 'Welcome to ConfidenSee! This is how the interface will look in your selected language.',
+        'bn': 'কনফিডেনসিতে স্বাগতম! আপনার নির্বাচিত ভাষায় ইন্টারফেসটি এইরকম দেখাবে।',
+        'es': '¡Bienvenido a ConfidenSee! Así es como se verá la interfaz en su idioma seleccionado.',
+        'fr': 'Bienvenue sur ConfidenSee ! Voici à quoi ressemblera l\'interface dans votre langue sélectionnée.'
+      };
+      
+      const aiPreviews = {
+        'en': 'Great job on your interview response! Your communication skills are improving steadily.',
+        'bn': 'আপনার সাক্ষাত্কার উত্তরটি দুর্দান্ত! আপনার যোগাযোগ দক্ষতা অবিচ্ছিন্নভাবে উন্নতি করছে।',
+        'es': '¡Excelente trabajo en tu respuesta de la entrevista! Tus habilidades de comunicación están mejorando constantemente.',
+        'fr': 'Excellent travail sur votre réponse d\'entretien ! Vos compétences en communication s\'améliorent régulièrement.',
+        'de': 'Großartige Arbeit an Ihrer Interview-Antwort! Ihre Kommunikationsfähigkeiten verbessern sich stetig.'
+      };
+      
+      // Update preview text
+      function updatePreview() {
+        document.getElementById('interface-preview').textContent = interfacePreviews[selectedInterfaceLang] || interfacePreviews['en'];
+        document.getElementById('ai-preview').textContent = aiPreviews[selectedAILang] || aiPreviews['en'];
+      }
+      
+      // Handle language selection
+      languageOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          const langType = option.getAttribute('data-type');
+          const langCode = option.getAttribute('data-lang');
+          
+          // Remove selected class from all options of the same type
+          document.querySelectorAll(`.language-option[data-type="${langType}"]`).forEach(opt => {
+            opt.classList.remove('selected');
+          });
+          
+          // Add selected class to clicked option
+          option.classList.add('selected');
+          
+          // Update selected language
+          if (langType === 'interface') {
+            selectedInterfaceLang = langCode;
+          } else if (langType === 'ai') {
+            selectedAILang = langCode;
+          }
+          
+          // Update preview
+          updatePreview();
+        });
+      });
+      
+      // Save settings functionality
+      document.getElementById('save-settings').addEventListener('click', () => {
+        const saveButton = document.getElementById('save-settings');
+        const originalText = saveButton.innerHTML;
+        
+        // Show saving state
+        saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        saveButton.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+          // Show success state
+          saveButton.innerHTML = '<i class="fas fa-check"></i> Settings Saved!';
+          saveButton.style.background = 'linear-gradient(135deg, var(--success), var(--primary))';
+          
+          // Reset after 2 seconds
+          setTimeout(() => {
+            saveButton.innerHTML = originalText;
+            saveButton.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+            saveButton.disabled = false;
+          }, 2000);
+        }, 1000);
+      });
+      
+      // Initialize preview
+      updatePreview();
+    })();
+  </script>
 </body>
 </html>
