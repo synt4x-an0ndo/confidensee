@@ -25,6 +25,9 @@
       --hover-shadow: 0 15px 35px -5px rgba(20, 20, 20, 0.1);
       --border-color: rgba(0, 0, 0, 0.06);
       --card-bg: #ffffff;
+      --success: #00cc88;
+      --warning: #ffaa00;
+      --info: #00aaff;
     }
     
     * {
@@ -99,6 +102,10 @@
       gap: 16px;
     }
     
+    .avatar {
+      position: relative;
+    }
+    
     .avatar img {
       width: 56px;
       height: 56px;
@@ -116,6 +123,14 @@
       background: var(--primary);
       border-radius: 50%;
       border: 2px solid white;
+    }
+    
+    .user-info h3 {
+      margin-bottom: 4px;
+    }
+    
+    .user-info p {
+      color: var(--text-gray);
     }
     
     .sidebar-nav {
@@ -154,40 +169,6 @@
     .nav-item.active a i,
     .nav-item a:hover i {
       color: var(--primary);
-    }
-    
-    /* Upgrade Card */
-    .upgrade-card {
-      margin: 20px;
-      padding: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border-radius: 12px;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 20px rgba(94, 114, 228, 0.3);
-    }
-    
-    .upgrade-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.05)
-      );
-      transform: rotate(-45deg);
-      animation: shine 3s infinite;
-    }
-    
-    @keyframes shine {
-      0% { left: -100%; }
-      20% { left: 100%; }
-      100% { left: 100%; }
     }
     
     /* Main Content */
@@ -236,19 +217,6 @@
       color: var(--text-gray);
     }
     
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    
-    .notification-btn, .profile-btn {
-      background: none;
-      border: none;
-      color: var(--text-gray);
-      cursor: pointer;
-    }
-    
     /* Dashboard Content */
     .dashboard-content {
       flex: 1;
@@ -256,97 +224,343 @@
       overflow-y: auto;
     }
     
-    /* Welcome Section */
-    .welcome-section {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: var(--blur);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 24px;
+    /* Page Header */
+    .page-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--card-shadow);
-    }
-    
-    .cta-button {
-      padding: 12px 20px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      transition: var(--transition);
-    }
-    
-    .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(94, 114, 228, 0.3);
-    }
-    
-    /* Stats Section */
-    .stats-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
       margin-bottom: 24px;
     }
     
-    .stat-card {
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 16px;
-      padding: 20px;
+    .page-header h1 {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    
+    .page-header p {
+      color: var(--text-gray);
+    }
+    
+    /* Training Progress */
+    .training-progress {
       display: flex;
-      align-items: center;
-      gap: 16px;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    
+    .progress-card {
+      flex: 1;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 16px;
       border: 1px solid var(--border-color);
       box-shadow: var(--card-shadow);
       transition: var(--transition);
     }
     
-    .stat-card:hover {
+    .progress-card:hover {
       transform: translateY(-3px);
       box-shadow: var(--hover-shadow);
     }
     
-    /* Analytics Section */
-    .analytics-section {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 24px;
-    }
-    
-    .interviews-section, .sessions-section {
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 24px;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--card-shadow);
-    }
-    
-    /* Settings Card */
-    .settings-card {
-      background: rgba(255, 255, 255, 0.7);
-      padding: 24px;
-      border-radius: 16px;
-      border: 1px solid var(--border-color);
+    .progress-card h3 {
       margin-bottom: 16px;
-      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-</style>
+    
+    .progress-card h3 i {
+      color: var(--primary);
+    }
+    
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    
+    /* Settings Cards */
+    .settings-card {
+      background: var(--card-bg);
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 24px;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+    
+    .settings-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--hover-shadow);
+    }
+    
+    .settings-card h3 {
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .settings-card p {
+      color: var(--text-gray);
+      margin-bottom: 16px;
+    }
+    
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-group label {
+      display: block;
+      color: var(--text-gray);
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    .form-group textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border-color);
+      color: var(--text-dark);
+      resize: vertical;
+      transition: var(--transition);
+    }
+    
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(94, 114, 228, 0.2);
+    }
+    
+    /* Voice Recording */
+    .voice-recording {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .recording-visualizer {
+      flex: 1;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .visualizer-bars {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      height: 100%;
+      padding: 0 10px;
+    }
+    
+    .visualizer-bar {
+      width: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+      transition: height 0.2s ease;
+    }
+    
+    .recording-time {
+      position: absolute;
+      color: var(--text-gray);
+      font-size: 12px;
+    }
+    
+    /* Buttons */
+    .btn-primary {
+      padding: 10px 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(94, 114, 228, 0.3);
+    }
+    
+    .btn-outline {
+      padding: 10px 16px;
+      background: transparent;
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      color: var(--primary);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-outline:hover {
+      background: rgba(94, 114, 228, 0.1);
+    }
+    
+    .btn-danger {
+      padding: 10px 16px;
+      background: transparent;
+      border: 1px solid var(--secondary);
+      border-radius: 8px;
+      color: var(--secondary);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-danger:hover {
+      background: rgba(255, 94, 125, 0.1);
+    }
+    
+    /* Recording States */
+    .recording {
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(94, 114, 228, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(94, 114, 228, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(94, 114, 228, 0); }
+    }
+    
+    /* Training Questions */
+    .training-questions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .question-item {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+    
+    .question-item h4 {
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+    
+    /* Card Actions */
+    .card-actions {
+      text-align: right;
+      margin-top: 16px;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .sidebar {
+        position: fixed;
+        left: -280px;
+        height: 100%;
+      }
+      
+      .sidebar.active {
+        left: 0;
+      }
+      
+      .dashboard-container {
+        overflow-x: hidden;
+      }
+      
+      .training-progress {
+        flex-direction: column;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .page-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+      
+      .voice-recording {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .dashboard-header {
+        flex-wrap: wrap;
+      }
+      
+      .search-bar {
+        max-width: 100%;
+        order: 3;
+        margin-top: 16px;
+      }
+      
+      .settings-card {
+        padding: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="dashboard-container">
-    <div class="sidebar">
-      <div class="sidebar-header"><div onclick="window.location.href='index.html'"class="logo" style="padding:12px"><img src="img/logo2.png" style="width:70px;"></div></div>
-      <div style="padding:24px 20px;border-bottom:1px solid rgb(255, 255, 255);display:flex;gap:16px"><img src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg" style="width:56px;height:56px;border-radius:50%"><div><h3>User</h3><p style="color:var(--text-gray)">Premium Member</p></div></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div onclick="window.location.href='index.html'" class="logo">
+          <img src="img/logo2.png" style="width:70px;" alt="ConfidenSee Logo">
+        </div>
+      </div>
+
+      <div class="user-profile">
+        <div class="avatar">
+          <img src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg" alt="User Avatar">
+          <div class="status-indicator"></div>
+        </div>
+        <div class="user-info">
+          <h3>User</h3>
+          <p>Premium Member</p>
+        </div>
+      </div>
+
       <ul class="sidebar-nav">
         <li class="nav-item"><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
         <li class="nav-item"><a href="question-packs.html"><i class="fas fa-folder"></i> Question Packs</a></li>
@@ -354,38 +568,322 @@
         <li class="nav-item"><a href="pricing.html"><i class="fas fa-tag"></i> Pricing</a></li>
         <li class="nav-item"><a href="ai-setup.html"><i class="fas fa-robot"></i> AI Setup</a></li>
         <li class="nav-item"><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
-          <li class="nav-item"><a href="aivideo.html"><i class="fas fa-video"></i> AI Video Interview</a></li>
+        <li class="nav-item"><a href="aivideo.html"><i class="fas fa-video"></i> AI Video Interview</a></li>
         <li class="nav-item active"><a href="ai-training.html"><i class="fas fa-graduation-cap"></i> AI Training</a></li>
         <li class="nav-item"><a href="language.html"><i class="fas fa-globe"></i> Language</a></li>
       </ul>
     </div>
 
+    <!-- Main Content -->
     <div class="main-content">
-      <div class="dashboard-header" style="padding:20px;background:rgb(255, 255, 255)"><input placeholder="Search..." style="width:100%;padding:12px;border-radius:8px;background:rgba(17, 17, 17, 0.233);border:1px solid rgba(255,255,255,.08);color:var(--text-light)"></div>
+      <div class="dashboard-header">
+        <button id="openSidebar" style="display:none;background:none;border:none;color:var(--text-gray)"><i class="fas fa-bars"></i></button>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input placeholder="Search..." />
+        </div>
+      </div>
 
-      <div class="dashboard-content" style="padding:24px">
-        <div class="welcome-section" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-          <div><h1 style="background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent">AI Training</h1><p style="color:var(--text-gray)">Train the AI to better understand your responses and provide more accurate feedback</p></div>
-          <button class="cta-button" style="padding:12px 20px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:8px;border:none;color:#fff"><i class="fas fa-brain"></i> Train AI</button>
+      <div class="dashboard-content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div>
+            <h1>AI Training</h1>
+            <p>Train the AI to better understand your responses and provide more accurate feedback</p>
+          </div>
+          <button class="btn-primary">
+            <i class="fas fa-brain"></i> Train AI
+          </button>
         </div>
 
+        <!-- Training Progress -->
+        <div class="training-progress">
+          <div class="progress-card">
+            <h3><i class="fas fa-microphone"></i> Voice Recognition</h3>
+            <div class="progress-info">
+              <span>Training Progress</span>
+              <span id="voice-progress">25%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 25%"></div>
+            </div>
+          </div>
+          
+          <div class="progress-card">
+            <h3><i class="fas fa-comment-alt"></i> Response Style</h3>
+            <div class="progress-info">
+              <span>Training Progress</span>
+              <span id="style-progress">40%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 40%"></div>
+            </div>
+          </div>
+          
+          <div class="progress-card">
+            <h3><i class="fas fa-chart-line"></i> Accuracy</h3>
+            <div class="progress-info">
+              <span>AI Understanding</span>
+              <span id="accuracy-progress">65%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 65%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Voice Recognition Training -->
         <div class="settings-card">
           <h3>Voice Recognition Training</h3>
-          <p style="color:var(--text-gray)">Read the sentences to help our AI better understand your accent</p>
-          <div style="margin-bottom:12px"><label style="display:block;color:var(--text-gray);margin-bottom:6px">Training Text</label><textarea readonly style="width:100%;min-height:120px;padding:12px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);color:var(--text-light)">Hello, my name is Alex Morgan. I am a software engineer with experience in JavaScript and Python. I enjoy solving complex problems and building scalable applications.</textarea></div>
-          <div style="display:flex;gap:12px;align-items:center"><button style="padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.08);background:transparent;color:var(--text-light)"><i class="fas fa-microphone"></i> Start Recording</button><span style="color:var(--text-gray)">0% trained</span></div>
-          <div style="text-align:right;margin-top:12px"><button style="padding:10px 16px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;color:#fff">Save Recording</button></div>
+          <p>Read the sentences to help our AI better understand your accent and speech patterns</p>
+          
+          <div class="form-group">
+            <label>Training Text</label>
+            <textarea readonly>Hello, my name is Alex Morgan. I am a software engineer with experience in JavaScript and Python. I enjoy solving complex problems and building scalable applications. My strengths include communication, teamwork, and analytical thinking.</textarea>
+          </div>
+          
+          <div class="voice-recording">
+            <div class="recording-visualizer" id="recording-visualizer">
+              <div class="visualizer-bars" id="visualizer-bars">
+                <!-- Visualizer bars will be generated by JavaScript -->
+              </div>
+              <div class="recording-time" id="recording-time">00:00</div>
+            </div>
+            
+            <button class="btn-outline" id="record-btn">
+              <i class="fas fa-microphone"></i> Start Recording
+            </button>
+            
+            <button class="btn-danger" id="stop-btn" style="display: none;">
+              <i class="fas fa-stop"></i> Stop
+            </button>
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+            <span style="color: var(--text-gray)">Training Completion: <span id="training-percent">25%</span></span>
+            <button class="btn-primary" id="save-recording">
+              <i class="fas fa-save"></i> Save Recording
+            </button>
+          </div>
         </div>
 
+        <!-- Response Style Training -->
         <div class="settings-card">
           <h3>Response Style Training</h3>
-          <p style="color:var(--text-gray)">Answer these to help the AI learn your style</p>
-          <div style="margin-bottom:12px"><label style="display:block;color:var(--text-gray);margin-bottom:6px">Question 1: Tell me about yourself</label><textarea placeholder="Type your answer here." style="width:100%;min-height:80px;padding:10px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);color:var(--text-light)"></textarea></div>
-          <div style="text-align:right"><button style="padding:10px 16px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;color:#fff">Save Answers</button></div>
+          <p>Answer these questions to help the AI learn your communication style and preferences</p>
+          
+          <div class="training-questions">
+            <div class="question-item">
+              <h4>Question 1: Tell me about yourself</h4>
+              <div class="form-group">
+                <textarea placeholder="Type your answer here...">I'm a passionate software developer with 5 years of experience in full-stack development. I specialize in creating efficient and scalable web applications using modern technologies.</textarea>
+              </div>
+            </div>
+            
+            <div class="question-item">
+              <h4>Question 2: What are your greatest strengths?</h4>
+              <div class="form-group">
+                <textarea placeholder="Type your answer here...">My greatest strengths include problem-solving, adaptability, and effective communication. I enjoy collaborating with teams to deliver high-quality solutions.</textarea>
+              </div>
+            </div>
+            
+            <div class="question-item">
+              <h4>Question 3: How do you handle challenging situations?</h4>
+              <div class="form-group">
+                <textarea placeholder="Type your answer here...">I approach challenges methodically, breaking them down into manageable parts. I prioritize tasks and maintain clear communication with stakeholders throughout the process.</textarea>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-actions">
+            <button class="btn-primary">
+              <i class="fas fa-save"></i> Save Answers
+            </button>
+          </div>
         </div>
 
+        <!-- Advanced Training Options -->
+        <div class="settings-card">
+          <h3>Advanced Training Options</h3>
+          <p>Customize how the AI learns from your interactions</p>
+          
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+              <div class="form-group">
+                <label>Learning Intensity</label>
+                <select style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);">
+                  <option>Balanced</option>
+                  <option>Aggressive</option>
+                  <option>Conservative</option>
+                </select>
+              </div>
+            </div>
+            
+            <div style="flex: 1; min-width: 200px;">
+              <div class="form-group">
+                <label>Feedback Style</label>
+                <select style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);">
+                  <option>Constructive</option>
+                  <option>Direct</option>
+                  <option>Encouraging</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-actions">
+            <button class="btn-outline">
+              <i class="fas fa-cog"></i> Apply Settings
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <script>
+    // Script to toggle sidebar on small screens
+    (function(){
+      const sidebar = document.getElementById('sidebar');
+      const openBtn = document.getElementById('openSidebar');
+      
+      // Show mobile open button if screen is small
+      function check() { 
+        if (window.innerWidth < 992) {
+          openBtn.style.display = 'inline-block';
+        } else {
+          openBtn.style.display = 'none';
+          sidebar.classList.remove('active');
+        }
+      }
+      
+      window.addEventListener('resize', check);
+      check();
+      
+      openBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+      });
+
+      // Voice recording functionality
+      const recordBtn = document.getElementById('record-btn');
+      const stopBtn = document.getElementById('stop-btn');
+      const visualizerBars = document.getElementById('visualizer-bars');
+      const recordingTime = document.getElementById('recording-time');
+      const recordingVisualizer = document.getElementById('recording-visualizer');
+      const trainingPercent = document.getElementById('training-percent');
+      const voiceProgress = document.getElementById('voice-progress');
+      
+      let isRecording = false;
+      let recordingTimer;
+      let seconds = 0;
+      
+      // Create visualizer bars
+      for (let i = 0; i < 20; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'visualizer-bar';
+        bar.style.height = '10px';
+        visualizerBars.appendChild(bar);
+      }
+      
+      const bars = document.querySelectorAll('.visualizer-bar');
+      
+      // Update visualizer bars with random heights
+      function updateVisualizer() {
+        if (!isRecording) return;
+        
+        bars.forEach(bar => {
+          const height = Math.floor(Math.random() * 30) + 5;
+          bar.style.height = `${height}px`;
+        });
+        
+        setTimeout(updateVisualizer, 100);
+      }
+      
+      // Update recording timer
+      function updateTimer() {
+        if (!isRecording) return;
+        
+        seconds++;
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        
+        recordingTime.textContent = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        
+        // Update training progress based on recording time
+        if (seconds <= 30) {
+          const progress = Math.min(25 + Math.floor(seconds / 30 * 50), 75);
+          trainingPercent.textContent = `${progress}%`;
+          voiceProgress.textContent = `${progress}%`;
+          document.querySelector('.progress-fill').style.width = `${progress}%`;
+        }
+      }
+      
+      // Start recording
+      recordBtn.addEventListener('click', () => {
+        isRecording = true;
+        recordBtn.style.display = 'none';
+        stopBtn.style.display = 'inline-flex';
+        recordingVisualizer.classList.add('recording');
+        
+        // Reset and start timer
+        seconds = 0;
+        recordingTimer = setInterval(updateTimer, 1000);
+        updateTimer();
+        
+        // Start visualizer animation
+        updateVisualizer();
+      });
+      
+      // Stop recording
+      stopBtn.addEventListener('click', () => {
+        isRecording = false;
+        recordBtn.style.display = 'inline-flex';
+        stopBtn.style.display = 'none';
+        recordingVisualizer.classList.remove('recording');
+        
+        // Stop timer
+        clearInterval(recordingTimer);
+        
+        // Reset visualizer bars
+        bars.forEach(bar => {
+          bar.style.height = '10px';
+        });
+        
+        // Set progress to 75% when stopped
+        trainingPercent.textContent = '75%';
+        voiceProgress.textContent = '75%';
+        document.querySelector('.progress-fill').style.width = '75%';
+      });
+      
+      // Save recording
+      document.getElementById('save-recording').addEventListener('click', () => {
+        const saveBtn = document.getElementById('save-recording');
+        const originalText = saveBtn.innerHTML;
+        
+        // Show saving state
+        saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        saveBtn.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+          // Show success state
+          saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+          saveBtn.style.background = 'linear-gradient(135deg, var(--success), var(--primary))';
+          
+          // Update progress to 100%
+          trainingPercent.textContent = '100%';
+          voiceProgress.textContent = '100%';
+          document.querySelector('.progress-fill').style.width = '100%';
+          
+          // Reset after 2 seconds
+          setTimeout(() => {
+            saveBtn.innerHTML = originalText;
+            saveBtn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+            saveBtn.disabled = false;
+          }, 2000);
+        }, 1500);
+      });
+    })();
+  </script>
 </body>
 </html>
