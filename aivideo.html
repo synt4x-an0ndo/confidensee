@@ -27,6 +27,7 @@
       --card-bg: rgba(255, 255, 255, 0.9);
       --border-color: rgba(0, 0, 0, 0.08);
       --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --success: #2dce89;
       --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
     }
     
@@ -1298,6 +1299,17 @@
     height: 50px;
     font-size: 1.2rem;
   }
+}
+.notification-dot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--success);
+    border-radius: 50%;
+    border: 2px solid white;
+    animation: pulse 2s infinite;
 }
   </style>
 </head>
