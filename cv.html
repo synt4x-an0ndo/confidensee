@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Create CV | ConfidenSee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <link rel="stylesheet" href="cv.css">
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div onclick="window.location.href='index.html'" class="logo-icon"><img src="img/logo2.png" alt="Logo"></div>
+        </div>
+      </div>
+
+      <div class="user-profile">
+        <div class="avatar">
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
+            alt="User">
+          <div class="status-indicator"></div>
+        </div>
+        <div class="user-info">
+          <h3>User</h3>
+          <p>Premium Member</p>
+        </div>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li class="nav-item"><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li class="nav-item"><a href="question-packs.html"><i class="fas fa-folder"></i> Question Packs</a></li>
+        <li class="nav-item"><a href="performance.html"><i class="fas fa-chart-line"></i> Performance</a></li>
+        <li class="nav-item"><a href="pricing.html"><i class="fas fa-tag"></i> Pricing</a></li>
+        <li class="nav-item"><a href="ai-setup.html"><i class="fas fa-robot"></i> AI Setup</a></li>
+        <li class="nav-item"><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+        <li class="nav-item"><a href="aivideo.html"><i class="fas fa-video"></i> AI Video Interview</a></li>
+        <li class="nav-item"><a href="ai-training.html"><i class="fas fa-graduation-cap"></i> AI Training</a></li>
+        <li class="nav-item"><a href="language.html"><i class="fas fa-globe"></i> Language</a></li>
+        <li class="nav-item active"><a href="create-cv.html"><i class="fas fa-file-alt"></i> Create CV</a></li>
+      </ul>
+
+      <div class="upgrade-card">
+        <h3>Upgrade to Premium</h3>
+        <p>Unlock all features and get personalized feedback</p>
+        <button class="cta-button">Upgrade Now</button>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="main-content">
+      <div class="dashboard-header">
+        <button id="openSidebar" style="display:none;background:none;border:none;color:var(--text-gray)">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input placeholder="Search..." />
+        </div>
+
+        <div class="header-actions" style="position: relative;">
+          <button class="notification-btn" id="notifBtn">
+            <i class="fas fa-bell"></i>
+          </button>
+
+          <button class="profile-btn">
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
+              alt="Profile">
+          </button>
+        </div>
+      </div>
+
+      <div class="dashboard-content">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+          <div>
+            <h1>Create Your Professional CV</h1>
+            <p>Choose a template, fill in your information, and download your CV as PDF</p>
+          </div>
+        </div>
+
+        <!-- Template Selection -->
+        <div class="template-selection">
+          <h2>Choose a Template</h2>
+          <div class="template-grid">
+            <div class="template-card" data-template="1">
+              <div class="template-preview">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #5e72e4, #ff5e7d); display: flex; align-items: center; justify-content: center; color: white;">
+                  <i class="fas fa-file-alt" style="font-size: 48px;"></i>
+                </div>
+              </div>
+              <div class="template-name">Modern Professional</div>
+              <div class="template-description">Clean and professional design with a modern layout</div>
+            </div>
+            <div class="template-card" data-template="2">
+              <div class="template-preview">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #2d3748, #718096); display: flex; align-items: center; justify-content: center; color: white;">
+                  <i class="fas fa-briefcase" style="font-size: 48px;"></i>
+                </div>
+              </div>
+              <div class="template-name">Executive</div>
+              <div class="template-description">Bold and authoritative design for leadership positions</div>
+            </div>
+            <div class="template-card" data-template="3">
+              <div class="template-preview">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #2dce89, #5e72e4); display: flex; align-items: center; justify-content: center; color: white;">
+                  <i class="fas fa-graduation-cap" style="font-size: 48px;"></i>
+                </div>
+              </div>
+              <div class="template-name">Creative</div>
+              <div class="template-description">Modern two-column layout perfect for creative professionals</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section">
+          <h2>Your Information</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label for="jobTitle">Job Title *</label>
+              <input type="text" id="jobTitle" placeholder="Software Engineer">
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" placeholder="john.doe@example.com">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
+            </div>
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input type="text" id="location" placeholder="New York, NY">
+            </div>
+            <div class="form-group">
+              <label for="linkedin">LinkedIn Profile</label>
+              <input type="url" id="linkedin" placeholder="https://linkedin.com/in/johndoe">
+            </div>
+            <div class="form-group">
+              <label for="website">Website/Portfolio</label>
+              <input type="url" id="website" placeholder="https://johndoe.com">
+            </div>
+            <div class="form-group">
+              <label for="photo">Profile Photo (Optional)</label>
+              <input type="file" id="photo" accept="image/*">
+            </div>
+          </div>
+
+          <div class="form-section-header">
+            <h3>Professional Summary</h3>
+          </div>
+          <div class="form-group">
+            <textarea id="summary" placeholder="Experienced software engineer with 5+ years in full-stack development..."></textarea>
+          </div>
+
+          <div class="form-section-header">
+            <h3>Work Experience</h3>
+            <button class="add-btn" id="addExperience"><i class="fas fa-plus"></i> Add Experience</button>
+          </div>
+          <div id="experienceContainer">
+            <div class="experience-item">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Job Title</label>
+                  <input type="text" class="exp-title" placeholder="Senior Developer">
+                </div>
+                <div class="form-group">
+                  <label>Company</label>
+                  <input type="text" class="exp-company" placeholder="Tech Corp Inc.">
+                </div>
+                <div class="form-group">
+                  <label>Location</label>
+                  <input type="text" class="exp-location" placeholder="San Francisco, CA">
+                </div>
+                <div class="form-group">
+                  <label>Start Date</label>
+                  <input type="month" class="exp-start">
+                </div>
+                <div class="form-group">
+                  <label>End Date</label>
+                  <input type="month" class="exp-end">
+                </div>
+                <div class="form-group">
+                  <label>Currently Working Here</label>
+                  <input type="checkbox" class="exp-current">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea class="exp-description" placeholder="Describe your responsibilities and achievements..."></textarea>
+              </div>
+              <button class="remove-btn remove-experience"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+          </div>
+
+          <div class="form-section-header">
+            <h3>Education</h3>
+            <button class="add-btn" id="addEducation"><i class="fas fa-plus"></i> Add Education</button>
+          </div>
+          <div id="educationContainer">
+            <div class="education-item">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Degree</label>
+                  <input type="text" class="edu-degree" placeholder="Bachelor of Science in Computer Science">
+                </div>
+                <div class="form-group">
+                  <label>Institution</label>
+                  <input type="text" class="edu-institution" placeholder="University of Technology">
+                </div>
+                <div class="form-group">
+                  <label>Location</label>
+                  <input type="text" class="edu-location" placeholder="Boston, MA">
+                </div>
+                <div class="form-group">
+                  <label>Graduation Year</label>
+                  <input type="month" class="edu-graduation">
+                </div>
+              </div>
+              <button class="remove-btn remove-education"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+          </div>
+
+          <div class="form-section-header">
+            <h3>Skills</h3>
+            <button class="add-btn" id="addSkill"><i class="fas fa-plus"></i> Add Skill</button>
+          </div>
+          <div id="skillsContainer">
+            <div class="form-group">
+              <input type="text" class="skill-input" placeholder="JavaScript, Python, React, etc.">
+            </div>
+          </div>
+        </div>
+
+        <!-- CV Preview -->
+        <div class="cv-preview-section">
+          <h2>CV Preview</h2>
+          <div class="preview-container" id="cvPreview">
+            <div class="cv-template template-1" id="cvTemplate">
+              <div class="cv-header">
+                <div>
+                  <h1 class="cv-name">John Doe</h1>
+                  <div class="cv-job-title">Software Engineer</div>
+                </div>
+                <div class="cv-contact">
+                  <div>john.doe@example.com</div>
+                  <div>+1 (555) 123-4567</div>
+                  <div>New York, NY</div>
+                </div>
+              </div>
+              
+              <div class="cv-section">
+                <h2 class="cv-section-title">Professional Summary</h2>
+                <p>Experienced software engineer with 5+ years in full-stack development. Specialized in creating scalable web applications and leading development teams.</p>
+              </div>
+              
+              <div class="cv-section">
+                <h2 class="cv-section-title">Work Experience</h2>
+                <div class="cv-item">
+                  <div class="cv-item-title">Senior Developer</div>
+                  <div class="cv-item-subtitle">Tech Corp Inc. | San Francisco, CA</div>
+                  <div class="cv-item-date">Jan 2020 - Present</div>
+                  <p>Led a team of 5 developers in creating a new customer portal that increased user engagement by 40%.</p>
+                </div>
+              </div>
+              
+              <div class="cv-section">
+                <h2 class="cv-section-title">Education</h2>
+                <div class="cv-item">
+                  <div class="cv-item-title">Bachelor of Science in Computer Science</div>
+                  <div class="cv-item-subtitle">University of Technology</div>
+                  <div class="cv-item-date">Graduated May 2018</div>
+                </div>
+              </div>
+              
+              <div class="cv-section">
+                <h2 class="cv-section-title">Skills</h2>
+                <div class="cv-skills">
+                  <span class="skill-tag">JavaScript</span>
+                  <span class="skill-tag">Python</span>
+                  <span class="skill-tag">React</span>
+                  <span class="skill-tag">Node.js</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button class="cta-button" id="generateCV"><i class="fas fa-file-pdf"></i> Generate CV</button>
+            <button class="cta-button" id="downloadCV" style="background: var(--success);"><i class="fas fa-download"></i> Download as PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Template selection
+    document.querySelectorAll('.template-card').forEach(card => {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+        updatePreview();
+      });
+    });
+
+    // Add experience
+    document.getElementById('addExperience').addEventListener('click', function() {
+      const container = document.getElementById('experienceContainer');
+      const newItem = document.createElement('div');
+      newItem.className = 'experience-item';
+      newItem.innerHTML = `
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Job Title</label>
+            <input type="text" class="exp-title" placeholder="Senior Developer">
+          </div>
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" class="exp-company" placeholder="Tech Corp Inc.">
+          </div>
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" class="exp-location" placeholder="San Francisco, CA">
+          </div>
+          <div class="form-group">
+            <label>Start Date</label>
+            <input type="month" class="exp-start">
+          </div>
+          <div class="form-group">
+            <label>End Date</label>
+            <input type="month" class="exp-end">
+          </div>
+          <div class="form-group">
+            <label>Currently Working Here</label>
+            <input type="checkbox" class="exp-current">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="exp-description" placeholder="Describe your responsibilities and achievements..."></textarea>
+        </div>
+        <button class="remove-btn remove-experience"><i class="fas fa-trash"></i> Remove</button>
+      `;
+      container.appendChild(newItem);
+      
+      // Add event listener to the remove button
+      newItem.querySelector('.remove-experience').addEventListener('click', function() {
+        container.removeChild(newItem);
+      });
+    });
+
+    // Add education
+    document.getElementById('addEducation').addEventListener('click', function() {
+      const container = document.getElementById('educationContainer');
+      const newItem = document.createElement('div');
+      newItem.className = 'education-item';
+      newItem.innerHTML = `
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Degree</label>
+            <input type="text" class="edu-degree" placeholder="Bachelor of Science in Computer Science">
+          </div>
+          <div class="form-group">
+            <label>Institution</label>
+            <input type="text" class="edu-institution" placeholder="University of Technology">
+          </div>
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" class="edu-location" placeholder="Boston, MA">
+          </div>
+          <div class="form-group">
+            <label>Graduation Year</label>
+            <input type="month" class="edu-graduation">
+          </div>
+        </div>
+        <button class="remove-btn remove-education"><i class="fas fa-trash"></i> Remove</button>
+      `;
+      container.appendChild(newItem);
+      
+      // Add event listener to the remove button
+      newItem.querySelector('.remove-education').addEventListener('click', function() {
+        container.removeChild(newItem);
+      });
+    });
+
+    // Add skill
+    document.getElementById('addSkill').addEventListener('click', function() {
+      const container = document.getElementById('skillsContainer');
+      const newInput = document.createElement('div');
+      newInput.className = 'form-group';
+      newInput.innerHTML = `
+        <input type="text" class="skill-input" placeholder="JavaScript, Python, React, etc.">
+        <button class="remove-btn remove-skill" style="margin-top: 8px;"><i class="fas fa-trash"></i> Remove</button>
+      `;
+      container.appendChild(newInput);
+      
+      // Add event listener to the remove button
+      newInput.querySelector('.remove-skill').addEventListener('click', function() {
+        container.removeChild(newInput);
+      });
+    });
+
+    // Update preview when form changes
+    document.querySelectorAll('input, textarea').forEach(element => {
+      element.addEventListener('input', updatePreview);
+    });
+
+    // Generate CV button
+    document.getElementById('generateCV').addEventListener('click', function() {
+      updatePreview();
+      alert('CV generated successfully! You can now download it as PDF.');
+    });
+
+    // Download CV as PDF
+    document.getElementById('downloadCV').addEventListener('click', function() {
+      const element = document.getElementById('cvTemplate');
+      const opt = {
+        margin: 10,
+        filename: 'my-cv.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      
+      html2pdf().set(opt).from(element).save();
+    });
+
+    // Update preview function
+    function updatePreview() {
+      // Get form values
+      const fullName = document.getElementById('fullName').value || 'John Doe';
+      const jobTitle = document.getElementById('jobTitle').value || 'Software Engineer';
+      const email = document.getElementById('email').value || 'john.doe@example.com';
+      const phone = document.getElementById('phone').value || '+1 (555) 123-4567';
+      const location = document.getElementById('location').value || 'New York, NY';
+      const linkedin = document.getElementById('linkedin').value;
+      const website = document.getElementById('website').value;
+      const summary = document.getElementById('summary').value || 'Experienced software engineer with 5+ years in full-stack development. Specialized in creating scalable web applications and leading development teams.';
+      
+      // Get selected template
+      const selectedTemplate = document.querySelector('.template-card.selected');
+      const templateId = selectedTemplate ? selectedTemplate.getAttribute('data-template') : '1';
+      
+      // Update template class
+      const cvTemplate = document.getElementById('cvTemplate');
+      cvTemplate.className = 'cv-template';
+      cvTemplate.classList.add(`template-${templateId}`);
+      
+      // Update CV content
+      cvTemplate.querySelector('.cv-name').textContent = fullName;
+      cvTemplate.querySelector('.cv-job-title').textContent = jobTitle;
+      
+      // Update contact info
+      const contactDiv = cvTemplate.querySelector('.cv-contact');
+      let contactHTML = `<div>${email}</div>`;
+      if (phone) contactHTML += `<div>${phone}</div>`;
+      if (location) contactHTML += `<div>${location}</div>`;
+      if (linkedin) contactHTML += `<div>${linkedin}</div>`;
+      if (website) contactHTML += `<div>${website}</div>`;
+      contactDiv.innerHTML = contactHTML;
+      
+      // Update summary
+      cvTemplate.querySelector('.cv-section p').textContent = summary;
+      
+      // Update experience
+      const experienceContainer = cvTemplate.querySelectorAll('.cv-section')[2];
+      experienceContainer.innerHTML = '<h2 class="cv-section-title">Work Experience</h2>';
+      
+      const experienceItems = document.querySelectorAll('.experience-item');
+      experienceItems.forEach(item => {
+        const title = item.querySelector('.exp-title').value;
+        const company = item.querySelector('.exp-company').value;
+        const expLocation = item.querySelector('.exp-location').value;
+        const start = item.querySelector('.exp-start').value;
+        const end = item.querySelector('.exp-current').checked ? 'Present' : item.querySelector('.exp-end').value;
+        const description = item.querySelector('.exp-description').value;
+        
+        if (title && company) {
+          const expHTML = `
+            <div class="cv-item">
+              <div class="cv-item-title">${title}</div>
+              <div class="cv-item-subtitle">${company}${expLocation ? ' | ' + expLocation : ''}</div>
+              <div class="cv-item-date">${start} - ${end}</div>
+              <p>${description}</p>
+            </div>
+          `;
+          experienceContainer.innerHTML += expHTML;
+        }
+      });
+      
+      // Update education
+      const educationContainer = cvTemplate.querySelectorAll('.cv-section')[3];
+      educationContainer.innerHTML = '<h2 class="cv-section-title">Education</h2>';
+      
+      const educationItems = document.querySelectorAll('.education-item');
+      educationItems.forEach(item => {
+        const degree = item.querySelector('.edu-degree').value;
+        const institution = item.querySelector('.edu-institution').value;
+        const eduLocation = item.querySelector('.edu-location').value;
+        const graduation = item.querySelector('.edu-graduation').value;
+        
+        if (degree && institution) {
+          const eduHTML = `
+            <div class="cv-item">
+              <div class="cv-item-title">${degree}</div>
+              <div class="cv-item-subtitle">${institution}${eduLocation ? ' | ' + eduLocation : ''}</div>
+              <div class="cv-item-date">${graduation ? 'Graduated ' + graduation : ''}</div>
+            </div>
+          `;
+          educationContainer.innerHTML += eduHTML;
+        }
+      });
+      
+      // Update skills
+      const skillsContainer = cvTemplate.querySelectorAll('.cv-section')[4];
+      skillsContainer.innerHTML = '<h2 class="cv-section-title">Skills</h2>';
+      
+      const skillsDiv = document.createElement('div');
+      skillsDiv.className = 'cv-skills';
+      
+      const skillInputs = document.querySelectorAll('.skill-input');
+      skillInputs.forEach(input => {
+        const skills = input.value.split(',').map(skill => skill.trim()).filter(skill => skill);
+        skills.forEach(skill => {
+          if (skill) {
+            const skillTag = document.createElement('span');
+            skillTag.className = 'skill-tag';
+            skillTag.textContent = skill;
+            skillsDiv.appendChild(skillTag);
+          }
+        });
+      });
+      
+      skillsContainer.appendChild(skillsDiv);
+    }
+
+    // Initialize the preview with default values
+    updatePreview();
+    
+    // Select first template by default
+    document.querySelector('.template-card').classList.add('selected');
+  </script>
+</body>
+</html>
